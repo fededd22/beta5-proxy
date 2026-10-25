@@ -1,0 +1,14 @@
+# Configuration de l'endpoint pour Choreo (à laisser à la racine du contexte de build).
+# Le port DOIT être celui sur lequel le bot écoute (variable PORT, défaut 3000).
+# 3000 n'est pas dans la liste des ports "scale-to-zero" de Choreo : le bot
+# n'est donc pas endormi automatiquement quand il ne reçoit pas de trafic HTTP.
+schemaVersion: 1.2
+endpoints:
+  - name: telegram-bot
+    displayName: Telegram Bot
+    service:
+      basePath: /
+      port: 3000
+    type: REST
+    networkVisibilities:
+      - Public
