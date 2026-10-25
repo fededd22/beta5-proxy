@@ -1,0 +1,27 @@
+services:
+  istidafa-bot:
+    build: .
+    image: istidafa4-by-moon:latest
+    ports:
+      # Le port hôte se règle via la variable PORT (défaut : 3000)
+      - "${PORT:-3000}:${PORT:-3000}"
+    environment:
+      - PORT=${PORT:-3000}
+      - APP_URL=${APP_URL:-}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - ADMIN_IDS=${ADMIN_IDS:-}
+      - MURAD_SETUP_PASSWORD=${MURAD_SETUP_PASSWORD:-}
+      - KEEP_ALIVE_INTERVAL=${KEEP_ALIVE_INTERVAL:-30}
+      - DATA_DIR=/app/data
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      # Persiste les scripts des utilisateurs, le domaine détecté et les
+      # bibliothèques installées à la demande par le bot.
+      - bot_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  bot_data:
