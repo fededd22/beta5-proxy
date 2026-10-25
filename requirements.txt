@@ -1,0 +1,4 @@
+aiogram>=3.13,<4
+flask>=3.0,<4
+requests>=2.31
+aiohttp-socks>=0.9
